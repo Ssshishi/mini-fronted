@@ -1,2 +1,1 @@
-# mini-fronted
-微前端--乾坤
+# 主应用 采用 react
