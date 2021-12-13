@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import 'antd/dist/antd.css'
-import Routes from '@/routes'
 import reportWebVitals from '@/utils/reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
 import {
@@ -11,7 +10,6 @@ import {
   setDefaultMountApp,
   initGlobalState,
   runAfterFirstMounted,
-  LifeCycleFn,
   LoadableApp,
 } from 'qiankun'
 import apps from './micro-apps'
@@ -39,22 +37,47 @@ const loader = (loading: boolean) => render(loading)
 const microApps = apps.map((app) => ({
   ...app,
   loader,
+  props: {
+    routerBase: app.activeRule,
+    getGlobalState: () =>
+      onGlobalStateChange((state) => {
+        console.log(state)
+      }, true),
+  },
 }))
 
 registerMicroApps(microApps, {
   beforeLoad: [
-    (app) => {
+    (
+      app: LoadableApp<{
+        routerBase: string
+        getGlobalState: () => void
+      }>,
+    ): Promise<any> => {
       console.log('[LifeCycle] before load %c%s', 'color: green;', app.name)
+      return Promise.reject()
     },
   ],
   beforeMount: [
-    (app) => {
+    (
+      app: LoadableApp<{
+        routerBase: string
+        getGlobalState: () => void
+      }>,
+    ): Promise<any> => {
       console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name)
+      return Promise.resolve()
     },
   ],
   afterUnmount: [
-    (app, global:) => {
+    (
+      app: LoadableApp<{
+        routerBase: string
+        getGlobalState: () => void
+      }>,
+    ): Promise<any> => {
       console.log('[LifeCycle] after unmount %c%s', 'color: green;', app.name)
+      return Promise.resolve()
     },
   ],
 })

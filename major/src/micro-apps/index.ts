@@ -1,46 +1,34 @@
-import store from '@/store'
-
-const microApps = [
+const apps = [
   {
     name: 'minor-next',
-    entry: '',
+    entry: '//localhost:3000/next',
     activeRule: '/next',
     container: '#minor-view',
   },
   {
     name: 'minor-umi',
-    entry: '',
+    entry: '//localhost:4000/umi',
     activeRule: '/umi',
     container: '#minor-view',
   },
   {
     name: 'minor-web',
-    entry: '',
+    entry: '//localhost:5000/web',
     activeRule: '/web',
     container: '#minor-view',
   },
   {
     name: 'minor-vite',
-    entry: '',
+    entry: '//localhost:6000/vite',
     activeRule: '/vite',
     container: '#minor-view',
   },
   {
     name: 'minor-vue',
-    entry: '',
+    entry: '//localhost:7000/vue',
     activeRule: '/vue',
     container: '#minor-view',
   },
 ]
-
-const apps = microApps.map((item) => {
-  return {
-    ...item,
-    props: {
-      routerBase: item.activeRule,
-      getGlobalState: store.getGlobalState,
-    },
-  }
-})
 
 export default apps
