@@ -1,0 +1,9 @@
+{
+  "public": "dist",
+  "rewrite": [
+    {
+      "source": "/micro-umi/*",
+      "destination": "/micro-umi/index.html"
+    }
+  ]
+}

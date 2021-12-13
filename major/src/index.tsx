@@ -40,7 +40,7 @@ const microApps = apps.map((app) => ({
   props: {
     routerBase: app.activeRule,
     getGlobalState: () =>
-      onGlobalStateChange((state) => {
+      onGlobalStateChange((state: any) => {
         console.log(state)
       }, true),
   },
@@ -100,7 +100,7 @@ setGlobalState({
 /**
  * 设置默认进入的子应用
  */
-setDefaultMountApp('/minor-umi')
+setDefaultMountApp('/minor-vue')
 
 /**
  * 启动应用
