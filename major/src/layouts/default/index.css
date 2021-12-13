@@ -1,0 +1,15 @@
+.logo {
+  padding: 16px;
+}
+
+.logo img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+[data-theme='light'] .site-layout .site-layout-background {
+  background: #141414;
+}

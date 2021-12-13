@@ -1,0 +1,1 @@
+import { initGlobalState } from 'qiankun'
