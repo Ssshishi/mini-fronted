@@ -1,7 +1,7 @@
 import { Layout, Menu, Breadcrumb } from 'antd'
 import { useState } from 'react'
 import './index.css'
-import { Outlet, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 import { sideData } from '@/utils/constant'
 import Loading from '@/components/loading'
 
@@ -52,14 +52,12 @@ const DefaultLayout: React.FC<Iprops> = (props) => {
             <Breadcrumb.Item>Minor</Breadcrumb.Item>
             <Breadcrumb.Item>Next</Breadcrumb.Item>
           </Breadcrumb>
+          <Loading loading={props.loading} />
           <div
             className="site-layout-background"
-            id="minor-view"
+            id="minor-container"
             style={{ padding: 24, minHeight: 360 }}
-          >
-            <Loading loading={props.loading} />
-            <Outlet />
-          </div>
+          ></div>
         </Content>
 
         <Footer style={{ textAlign: 'center' }}>

@@ -1,27 +1,21 @@
 const apps = [
   {
-    name: 'minor-umi',
-    entry: '//localhost:6000/micro-umi',
-    activeRule: '/umi',
-    container: '#minor-view',
-  },
-  {
     name: 'minor-react',
     entry: '//localhost:7001/micro-react',
     activeRule: '/react',
-    container: '#minor-view',
+    container: '#minor-container',
   },
   {
-    name: 'minor-vite',
-    entry: '//localhost:8000/micro-vite',
-    activeRule: '/vite',
-    container: '#minor-view',
+    name: 'minor-umi',
+    entry: '//localhost:8001/micro-vite',
+    activeRule: '/umi',
+    container: '#minor-container',
   },
   {
     name: 'minor-vue',
-    entry: '//localhost:9000/micro-vue',
+    entry: '//localhost:9001/micro-vue',
     activeRule: '/vue',
-    container: '#minor-view',
+    container: '#minor-container',
   },
 ]
 

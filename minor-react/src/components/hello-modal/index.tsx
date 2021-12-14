@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'antd'
 
-const HomeModal: React.FC = () => {
+const HelloModal: React.FC = () => {
   const [visible, setVisible] = useState(false)
   return (
     <>
@@ -18,4 +18,4 @@ const HomeModal: React.FC = () => {
   )
 }
 
-export default HomeModal
+export default HelloModal

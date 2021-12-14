@@ -1,9 +1,9 @@
 import {
-  DesktopOutlined,
+  // DesktopOutlined,
   PieChartOutlined,
   FileOutlined,
   TeamOutlined,
-  UserOutlined,
+  // UserOutlined,
 } from '@ant-design/icons'
 import { ReactNode } from 'react'
 
@@ -16,10 +16,15 @@ interface SideType {
 }
 
 export const sideData: SideType[] = [
+  // {
+  //   icon: <DesktopOutlined />,
+  //   title: 'minor-next',
+  //   path: '/minor-next',
+  // },
   {
-    icon: <DesktopOutlined />,
-    title: 'minor-next',
-    path: '/minor-next',
+    icon: <FileOutlined />,
+    title: 'minor-react',
+    path: '/minor-react',
   },
   {
     icon: <PieChartOutlined />,
@@ -27,18 +32,13 @@ export const sideData: SideType[] = [
     path: '/minor-umi',
   },
   {
-    icon: <FileOutlined />,
-    title: 'minor-web',
-    path: '/minor-web',
-  },
-  {
-    icon: <UserOutlined />,
-    title: 'minor-vite',
-    path: '/minor-vite',
-  },
-  {
     icon: <TeamOutlined />,
     title: 'minor-vue',
     path: '/minor-vue',
   },
+  // {
+  //   icon: <UserOutlined />,
+  //   title: 'minor-vite',
+  //   path: '/minor-vite',
+  // },
 ]

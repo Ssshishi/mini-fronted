@@ -22,7 +22,7 @@ function render(loading: boolean) {
         <DefaultLayout loading={loading} />
       </BrowserRouter>
     </React.StrictMode>,
-    document.getElementById('major-root'),
+    document.getElementById('#major-container'),
   )
 }
 
@@ -34,48 +34,40 @@ const loader = (loading: boolean) => render(loading)
 /**
  * 注册子应用
  */
-const microApps = apps.map((app) => ({
+interface microAppIprops {
+  name: string
+  entry: string
+  activeRule: string
+  container: string
+  loader: (loading: boolean) => void
+}
+const microApps: microAppIprops[] = apps.map((app) => ({
   ...app,
   loader,
-  props: {
-    routerBase: app.activeRule,
-    getGlobalState: () =>
-      onGlobalStateChange((state: any) => {
-        console.log(state)
-      }, true),
-  },
+  // props: {
+  //   routerBase: app.activeRule,
+  //   getGlobalState: () =>
+  //     onGlobalStateChange((state: any) => {
+  //       console.log(state)
+  //     }, true),
+  // },
 }))
 
 registerMicroApps(microApps, {
   beforeLoad: [
-    (
-      app: LoadableApp<{
-        routerBase: string
-        getGlobalState: () => void
-      }>,
-    ): Promise<any> => {
+    (app: LoadableApp<{}>): Promise<any> => {
       console.log('[LifeCycle] before load %c%s', 'color: green;', app.name)
       return Promise.reject()
     },
   ],
   beforeMount: [
-    (
-      app: LoadableApp<{
-        routerBase: string
-        getGlobalState: () => void
-      }>,
-    ): Promise<any> => {
+    (app: LoadableApp<{}>): Promise<any> => {
       console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name)
       return Promise.resolve()
     },
   ],
   afterUnmount: [
-    (
-      app: LoadableApp<{
-        routerBase: string
-        getGlobalState: () => void
-      }>,
-    ): Promise<any> => {
+    (app: LoadableApp<{}>): Promise<any> => {
       console.log('[LifeCycle] after unmount %c%s', 'color: green;', app.name)
       return Promise.resolve()
     },
@@ -83,7 +75,7 @@ registerMicroApps(microApps, {
 })
 
 const { onGlobalStateChange, setGlobalState } = initGlobalState({
-  user: 'Cishy',
+  user: 'qiankun',
 })
 
 onGlobalStateChange((value, prev) =>
@@ -91,16 +83,16 @@ onGlobalStateChange((value, prev) =>
 )
 
 setGlobalState({
-  ignore: 'master',
+  ignore: 'main',
   user: {
-    name: 'master',
+    name: 'main',
   },
 })
 
 /**
  * 设置默认进入的子应用
  */
-setDefaultMountApp('/minor-vue')
+setDefaultMountApp('/minor-react')
 
 /**
  * 启动应用

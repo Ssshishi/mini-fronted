@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
 import {
   BrowserRouter as Router,
   NavLink,
   Route,
   Routes,
 } from 'react-router-dom'
-import logo from './logo.svg'
 import './App.css'
 import 'antd/dist/antd.min.css'
 import Home from './pages/home'
 import About from './pages/about'
+import LibVersion from './components/lib-version'
+import { Divider } from 'antd'
+import HelloModal from './components/hello-modal'
 
 const RouteExample = () => {
   return (
@@ -33,20 +34,10 @@ const RouteExample = () => {
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LibVersion />
+      <HelloModal />
+
+      <Divider />
       <RouteExample />
     </div>
   )
