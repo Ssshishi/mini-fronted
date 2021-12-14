@@ -1,5 +1,6 @@
 const { name } = require('./package')
 
+// 为了让主应用能正确识别微应用暴露出来的一些信息
 module.exports = {
   webpack: (config) => {
     config.output.library = `${name}-[name]`

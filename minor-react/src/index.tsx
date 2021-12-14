@@ -5,19 +5,15 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import * as serviceWorker from './serviceWorker'
 
-interface IProps {
-  container?: Element
-}
-
-function render(props: IProps) {
+function render(props: any) {
   const { container } = props
   ReactDOM.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>,
     container
-      ? container.querySelector('#minor-react-root')
-      : document.getElementById('#minor-react-root'),
+      ? document.querySelector(container)
+      : document.querySelector('#minor-react-root'),
   )
 }
 
@@ -35,22 +31,28 @@ function storeTest(props: any) {
   })
 }
 
-console.error('qiankun', window.__POWERED_BY_QIANKUN__)
-
 if (!window.__POWERED_BY_QIANKUN__) {
   render({})
 }
 
+/**
+ * 修改、导出微应用钩子
+ */
+
+// 首次进入初始化
 export async function bootstrap(props: any) {
-  console.log('bootstrap', props)
+  console.log(props)
+  // console.log('bootstrap', props)
 }
 
+//  挂载
 export async function mount(props: any) {
-  console.log('react mount', props)
+  // console.log('react mount', props)
   storeTest(props)
   render(props)
 }
 
+// 卸载
 export async function unmount(props: any) {
   const { container } = props
   console.error(11, container)
@@ -63,9 +65,8 @@ export async function unmount(props: any) {
   )
 }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// 性能报告
 reportWebVitals()
 
+// 注销
 serviceWorker.unregister()

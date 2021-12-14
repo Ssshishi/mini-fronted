@@ -14,7 +14,9 @@ import HelloModal from './components/hello-modal'
 
 const RouteExample = () => {
   return (
-    <Router basename={window.__POWERED_BY_QIANKUN__ ? '/minor-react' : '/'}>
+    <Router
+      basename={(window as any).__POWERED_BY_QIANKUN__ ? '/minor/react' : '/'}
+    >
       <nav>
         <NavLink to="/" className="app-mian-link" end>
           Home
