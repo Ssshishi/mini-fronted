@@ -25,7 +25,7 @@ let router = null,
 function render(props = {}) {
   const { container } = props
   history = createWebHistory(
-    qiankunWindow.__POWERED_BY_QIANKUN__ ? '/micro-vue' : '/',
+    qiankunWindow.__POWERED_BY_QIANKUN__ ? '/micro/vue' : '/',
   )
 
   router = createRouter({

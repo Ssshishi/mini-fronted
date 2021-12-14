@@ -5,77 +5,88 @@ import reportWebVitals from '@/utils/reportWebVitals'
 import {
   registerMicroApps,
   start,
-  setDefaultMountApp,
+  // setDefaultMountApp,
   initGlobalState,
   runAfterFirstMounted,
   LoadableApp,
 } from 'qiankun'
-import apps from './micro-apps'
+// import apps from './micro-apps'
 import DefaultLayout from './layouts/default'
 import { BrowserRouter } from 'react-router-dom'
 
-interface Iprops {
-  loading: boolean
-}
-function render(props: Iprops) {
-  const container = document.getElementById('major-container')
-  console.error(1111, container)
+/**
+ * step1 初始化应用
+ */
 
-  ReactDOM.render(
-    <BrowserRouter>
-      <DefaultLayout loading={props.loading} />
-    </BrowserRouter>,
-    container,
-  )
-}
-
-// 初始化应用
-render({ loading: true })
-
-const loader = (loading: boolean) => render({ loading })
+ReactDOM.render(
+  <BrowserRouter>
+    <DefaultLayout />
+  </BrowserRouter>,
+  document.getElementById('major-container'),
+)
 
 /**
  * 注册子应用
  */
-interface microAppIprops {
-  name: string
-  entry: string
-  activeRule: string
-  container: string
-  loader: (loading: boolean) => void
-}
-const microApps: microAppIprops[] = apps.map((app) => ({
-  ...app,
-  loader,
-  // props: {
-  //   routerBase: app.activeRule,
-  //   getGlobalState: () =>
-  //     onGlobalStateChange((state: any) => {
-  //       console.log(state)
-  //     }, true),
-  // },
-}))
+// interface microAppIprops {
+//   name: string
+//   entry: string
+//   activeRule: string
+//   container: string
+// }
+// const microApps: microAppIprops[] = apps.map((app) => ({
+//   ...app,
+//   // props: {
+//   //   routerBase: app.activeRule,
+//   //   getGlobalState: () =>
+//   //     onGlobalStateChange((state: any) => {
+//   //       console.log(state)
+//   //     }, true),
+//   // },
+// }))
 
-registerMicroApps(microApps, {
-  beforeLoad: [
-    (app: LoadableApp<{}>): Promise<any> => {
-      console.log('[LifeCycle] before load %c%s', 'color: green;', app.name)
-      return Promise.reject()
+registerMicroApps(
+  [
+    {
+      name: 'minor-react',
+      entry: '//localhost:3001',
+      container: '#minor-container',
+      activeRule: '/minor/react', // 与子项目的 router.base一致
     },
+    // {
+    //   name: 'minor-umi',
+    //   entry: '//localhost:3002',
+    //   container: '#minor-container',
+    //   activeRule: '/minor/umi',
+    // },
+    // {
+    //   name: 'minor-vue',
+    //   entry: '//localhost:3003',
+    //   container: '#minor-container',
+    //   activeRule: '/minor/vue',
+    // },
   ],
-  beforeMount: [
-    (app: LoadableApp<{}>): Promise<any> => {
-      console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name)
-      return Promise.resolve()
-    },
-  ],
-  afterUnmount: [
-    (app: LoadableApp<{}>): Promise<any> => {
-      console.log('[LifeCycle] after unmount %c%s', 'color: green;', app.name)
-      return Promise.resolve()
-    },
-  ],
-})
+  {
+    beforeLoad: [
+      (app: LoadableApp<{}>): Promise<any> => {
+        console.log('[LifeCycle] before load %c%s', 'color: green;', app.name)
+        return Promise.reject()
+      },
+    ],
+    beforeMount: [
+      (app: LoadableApp<{}>): Promise<any> => {
+        console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name)
+        return Promise.resolve()
+      },
+    ],
+    afterUnmount: [
+      (app: LoadableApp<{}>): Promise<any> => {
+        console.log('[LifeCycle] after unmount %c%s', 'color: green;', app.name)
+        return Promise.resolve()
+      },
+    ],
+  },
+)
 
 const { onGlobalStateChange, setGlobalState } = initGlobalState({
   user: 'qiankun',
@@ -95,7 +106,7 @@ setGlobalState({
 /**
  * 设置默认进入的子应用
  */
-setDefaultMountApp('/minor-react')
+// setDefaultMountApp('')
 
 /**
  * 启动应用

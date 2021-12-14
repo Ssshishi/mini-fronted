@@ -3,15 +3,10 @@ import { useState } from 'react'
 import './index.css'
 import { useNavigate } from 'react-router'
 import { sideData } from '@/utils/constant'
-import Loading from '@/components/loading'
-
-interface Iprops {
-  loading: boolean
-}
 
 const { Header, Content, Footer, Sider: Side } = Layout
 
-const DefaultLayout: React.FC<Iprops> = (props) => {
+const DefaultLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState<boolean>(false)
 
   const navigate = useNavigate()
@@ -52,7 +47,6 @@ const DefaultLayout: React.FC<Iprops> = (props) => {
             <Breadcrumb.Item>Minor</Breadcrumb.Item>
             <Breadcrumb.Item>Next</Breadcrumb.Item>
           </Breadcrumb>
-          <Loading loading={props.loading} />
           <div
             className="site-layout-background"
             id="minor-container"

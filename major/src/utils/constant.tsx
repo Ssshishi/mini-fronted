@@ -24,17 +24,17 @@ export const sideData: SideType[] = [
   {
     icon: <FileOutlined />,
     title: 'minor-react',
-    path: '/minor-react',
+    path: '/minor/react',
   },
   {
     icon: <PieChartOutlined />,
     title: 'minor-umi',
-    path: '/minor-umi',
+    path: '/minor/umi',
   },
   {
     icon: <TeamOutlined />,
     title: 'minor-vue',
-    path: '/minor-vue',
+    path: '/minor/vue',
   },
   // {
   //   icon: <UserOutlined />,
