@@ -22,7 +22,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "npm-run-all --parallel start:*",
+    "start:major": "craco start",
+    "start:minor-react": "cd ../minor-react && yarn start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject"
@@ -45,5 +47,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }

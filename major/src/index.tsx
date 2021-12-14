@@ -1,9 +1,7 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import 'antd/dist/antd.css'
 import reportWebVitals from '@/utils/reportWebVitals'
-import { BrowserRouter } from 'react-router-dom'
 import {
   registerMicroApps,
   start,
@@ -14,22 +12,27 @@ import {
 } from 'qiankun'
 import apps from './micro-apps'
 import DefaultLayout from './layouts/default'
+import { BrowserRouter } from 'react-router-dom'
 
-function render(loading: boolean) {
+interface Iprops {
+  loading: boolean
+}
+function render(props: Iprops) {
+  const container = document.getElementById('major-container')
+  console.error(1111, container)
+
   ReactDOM.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <DefaultLayout loading={loading} />
-      </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('#major-container'),
+    <BrowserRouter>
+      <DefaultLayout loading={props.loading} />
+    </BrowserRouter>,
+    container,
   )
 }
 
 // 初始化应用
-render(true)
+render({ loading: true })
 
-const loader = (loading: boolean) => render(loading)
+const loader = (loading: boolean) => render({ loading })
 
 /**
  * 注册子应用
