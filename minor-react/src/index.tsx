@@ -5,8 +5,11 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import * as serviceWorker from './serviceWorker'
 
-//@ts-ignore
-function render(props) {
+interface IProps {
+  container?: Element
+}
+
+function render(props: IProps) {
   const { container } = props
   ReactDOM.render(
     <React.StrictMode>
@@ -32,22 +35,25 @@ function storeTest(props: any) {
   })
 }
 
+console.error('qiankun', window.__POWERED_BY_QIANKUN__)
+
 if (!window.__POWERED_BY_QIANKUN__) {
   render({})
 }
 
-export async function bootstrap() {
-  console.log('bootstrap')
+export async function bootstrap(props: any) {
+  console.log('bootstrap', props)
 }
 
 export async function mount(props: any) {
-  console.log('react mount')
+  console.log('react mount', props)
   storeTest(props)
   render(props)
 }
 
 export async function unmount(props: any) {
   const { container } = props
+  console.error(11, container)
 
   ReactDOM.unmountComponentAtNode(
     // @ts-ignore
